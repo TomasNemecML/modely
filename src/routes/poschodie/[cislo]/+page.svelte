@@ -86,7 +86,7 @@
 			<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
 				{#each models as model (model.id)}
 					<a href="/model/{model.id}/" class="premium-card group">
-						<div class="aspect-[4/3] relative overflow-hidden bg-slate-100">
+						<div class="aspect-4/3 relative overflow-hidden bg-slate-100">
 							{#if model.Obrazok}
 								<img
 									src={pb.files.getURL(model, model.Obrazok)}
@@ -101,7 +101,7 @@
 								</div>
 							{/if}
 							<div
-								class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
+								class="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
 							></div>
 						</div>
 						<div class="p-6">

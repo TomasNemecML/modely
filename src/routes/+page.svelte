@@ -38,7 +38,7 @@
 						class="absolute top-0 left-0 w-1 h-full bg-aviation-accent opacity-0 group-hover:opacity-100 transition-opacity"
 					></div>
 
-					<div class="flex-grow p-6">
+					<div class="grow p-6">
 						<div class="text-aviation-accent text-[10px] font-bold uppercase tracking-[0.2em] mb-2">
 							Poschodie {shelf.Cislo}
 						</div>

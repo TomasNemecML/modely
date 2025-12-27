@@ -12,7 +12,7 @@
 		</div>
 	</header>
 
-	<main class="flex-grow p-4 max-w-2xl mx-auto w-full">
+	<main class="grow p-4 max-w-2xl mx-auto w-full">
 		{@render children()}
 	</main>
 
