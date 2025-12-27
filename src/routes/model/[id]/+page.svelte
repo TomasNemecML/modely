@@ -82,11 +82,9 @@
 							Fotka nie je k dispozícii
 						</div>
 					{/if}
-					<div
-						class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black/40 to-transparent"
-					></div>
+					<div class="absolute bottom-0 left-0 w-full h-28 bg-linear-to-t from-black/10 to-transparent"></div>
 				</div>
-				<div class="p-8">
+				<div class="p-6">
 					<div class="text-aviation-accent text-xs font-bold uppercase tracking-[0.2em] mb-3">
 						{model.Aerolinka || "Neznáma aerolinka"}
 					</div>
@@ -94,7 +92,7 @@
 						{model.Nazov}
 					</h2>
 
-					<div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
+					<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-10">
 						<div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
 							<div
 								class="text-[10px] text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-2"
@@ -110,13 +108,59 @@
 									stroke-linecap="round"
 									stroke-linejoin="round"
 									class="text-aviation-accent"
-									><path d="m11 17 2 2 4-4" /><path d="m11 17-2 2-4-4" /><path d="M13 3h8v8" /><path
-										d="M3 11V3h8"
+									><circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20" /><path
+										d="M2 12h20"
 									/></svg
 								>
-								Mierka
+								Aerolinka
 							</div>
-							<div class="font-bold text-aviation-blue">{model.Mierka || "N/A"}</div>
+							<div class="font-bold text-aviation-blue">{model.Aerolinka || "N/A"}</div>
+						</div>
+						<div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+							<div
+								class="text-[10px] text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-2"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="12"
+									height="12"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="text-aviation-accent"
+									><path d="M12 2H2v10h10V2z" /><path d="m12 12 9 9" /><path d="m21 12-9 9" /><path
+										d="M22 22h-10V12h10v10z"
+									/></svg
+								>
+								Značka
+							</div>
+							<div class="font-bold text-aviation-blue">{model.Znacka || "N/A"}</div>
+						</div>
+						<div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+							<div
+								class="text-[10px] text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-2"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="12"
+									height="12"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="text-aviation-accent"
+									><path
+										d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"
+									/></svg
+								>
+								Model
+							</div>
+							<div class="font-bold text-aviation-blue">{model.Model || "N/A"}</div>
 						</div>
 						<div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
 							<div
@@ -159,44 +203,21 @@
 									stroke-linecap="round"
 									stroke-linejoin="round"
 									class="text-aviation-accent"
-									><path d="M12 2H2v10h10V2z" /><path d="m12 12 9 9" /><path d="m21 12-9 9" /><path
-										d="M22 22h-10V12h10v10z"
+									><path d="m11 17 2 2 4-4" /><path d="m11 17-2 2-4-4" /><path d="M13 3h8v8" /><path
+										d="M3 11V3h8"
 									/></svg
 								>
-								Značka
+								Mierka
 							</div>
-							<div class="font-bold text-aviation-blue">{model.Znacka || "N/A"}</div>
-						</div>
-						<div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-							<div
-								class="text-[10px] text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-2"
-							>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="12"
-									height="12"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2.5"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									class="text-aviation-accent"
-									><path d="M3 3v18h18" /><path d="M7 16h8" /><path d="M7 11h12" /><path
-										d="M7 6h3"
-									/></svg
-								>
-								Poschodie
-							</div>
-							<div class="font-bold text-aviation-blue">{model.expand?.Policka?.Cislo || "N/A"}</div>
+							<div class="font-bold text-aviation-blue">{model.Mierka || "N/A"}</div>
 						</div>
 					</div>
 
 					<div class="max-w-none">
 						<div class="flex items-center gap-3 mb-4">
-							<div class="h-px flex-grow bg-slate-100"></div>
-							<h4 class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400">Príbeh modelu</h4>
-							<div class="h-px flex-grow bg-slate-100"></div>
+							<div class="h-px grow bg-slate-100"></div>
+							<h4 class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400">Popis Lietadla</h4>
+							<div class="h-px grow bg-slate-100"></div>
 						</div>
 						<p class="text-slate-600 leading-relaxed text-lg">
 							{model.Popis || "K tomuto modelu nie je k dispozícii žiadny popis."}

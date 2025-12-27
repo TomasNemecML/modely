@@ -84,7 +84,7 @@
 			</div>
 		{:else}
 			<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-				{#each models as model}
+				{#each models as model (model.id)}
 					<a href="/model/{model.id}/" class="premium-card group">
 						<div class="aspect-[4/3] relative overflow-hidden bg-slate-100">
 							{#if model.Obrazok}
@@ -113,6 +113,11 @@
 							>
 								{model.Nazov}
 							</h3>
+							{#if model.Model}
+								<div class="text-slate-400 text-xs mt-1 font-medium">
+									{model.Model}
+								</div>
+							{/if}
 						</div>
 					</a>
 				{/each}

@@ -7,7 +7,7 @@
 	<header class="glass-header p-6">
 		<div class="max-w-2xl mx-auto flex justify-between items-center">
 			<h1 class="text-2xl font-black tracking-tighter uppercase italic">
-				<a href="/" class="text-gradient">Jurkova modelova policka</a>
+				<a href="/" class="text-gradient">Jurkova modelova zbierka</a>
 			</h1>
 		</div>
 	</header>
