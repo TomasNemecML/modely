@@ -15,6 +15,25 @@
 		}
 	}
 
+	async function downloadQr() {
+		try {
+			const url = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(page.url.href)}`;
+			const response = await fetch(url);
+			const blob = await response.blob();
+			const blobUrl = URL.createObjectURL(blob);
+
+			const link = document.createElement("a");
+			link.href = blobUrl;
+			link.download = `qrcode-${modelId}.png`;
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+			URL.revokeObjectURL(blobUrl);
+		} catch (error) {
+			console.error("Error downloading QR code:", error);
+		}
+	}
+
 	const modelPromise = getModel();
 </script>
 
@@ -47,6 +66,7 @@
 				<a href="/" class="text-aviation-accent font-bold hover:underline">Vrátiť sa domov</a>
 			</div>
 		{:else}
+			{console.log(model)}
 			<div class="mb-8">
 				<a
 					href="/poschodie/{model.expand?.Policka?.Cislo || 1}/"
@@ -66,6 +86,10 @@
 						><path d="m15 18-6-6 6-6" /></svg
 					>
 					Späť na poschodie
+					{#if model.expand?.Policka}
+						<span class="mx-1 text-slate-300">|</span>
+						<span class="text-slate-500">{model.expand.Policka.Cislo}. {model.expand.Policka.Nazov}</span>
+					{/if}
 				</a>
 			</div>
 
@@ -211,6 +235,84 @@
 							</div>
 							<div class="font-bold text-aviation-blue">{model.Mierka || "N/A"}</div>
 						</div>
+
+						<div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+							<div
+								class="text-[10px] text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-2"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="12"
+									height="12"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="text-aviation-accent"
+									><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg
+								>
+								Čas stavby
+							</div>
+							<div class="font-bold text-aviation-blue">{model.CasPostavania || "N/A"}</div>
+						</div>
+
+						<div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+							<div
+								class="text-[10px] text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-2"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="12"
+									height="12"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="text-aviation-accent"
+									><path
+										d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+									/><polyline points="3.27 6.96 12 12.01 20.73 6.96" /><line
+										x1="12"
+										y1="22.08"
+										x2="12"
+										y2="12"
+									/></svg
+								>
+								Materiál
+							</div>
+							<div class="font-bold text-aviation-blue">{model.Material || "N/A"}</div>
+						</div>
+
+						<div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+							<div
+								class="text-[10px] text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-2"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="12"
+									height="12"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="text-aviation-accent"
+									><rect x="2" y="5" width="20" height="14" rx="2" /><line
+										x1="2"
+										x2="22"
+										y1="10"
+										y2="10"
+									/></svg
+								>
+								Registrácia
+							</div>
+							<div class="font-bold text-aviation-blue">{model.SPZ || "N/A"}</div>
+						</div>
 					</div>
 
 					<div class="max-w-none">
@@ -222,6 +324,69 @@
 						<p class="text-slate-600 leading-relaxed text-lg">
 							{model.Popis || "K tomuto modelu nie je k dispozícii žiadny popis."}
 						</p>
+
+						{#if model.wiki}
+							<div class="mt-6 flex justify-center">
+								<a
+									href={model.wiki}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-aviation-blue rounded-full text-sm font-semibold transition-colors"
+								>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="16"
+										height="16"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									>
+										<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+										<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+									</svg>
+									Wikipedia
+								</a>
+							</div>
+						{/if}
+
+						<div class="mt-12 flex flex-col items-center border-t border-slate-100 pt-8">
+							<h4 class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-6">
+								Zdieľať model
+							</h4>
+
+							<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm mb-4">
+								<img
+									src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(page.url.href)}`}
+									alt="QR Code"
+									class="w-32 h-32"
+								/>
+							</div>
+
+							<button
+								class="flex items-center gap-2 text-xs text-slate-500 hover:text-aviation-accent transition-colors cursor-pointer"
+								onclick={downloadQr}
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="16"
+									height="16"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+									<polyline points="7 10 12 15 17 10" />
+									<line x1="12" y1="15" x2="12" y2="3" />
+								</svg>
+								Stiahnuť QR kód
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>

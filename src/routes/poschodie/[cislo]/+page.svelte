@@ -19,6 +19,25 @@
 		}
 	}
 
+	async function downloadQr() {
+		try {
+			const url = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(page.url.href)}`;
+			const response = await fetch(url);
+			const blob = await response.blob();
+			const blobUrl = URL.createObjectURL(blob);
+
+			const link = document.createElement("a");
+			link.href = blobUrl;
+			link.download = `qrcode-poschodie-${shelfId}.png`;
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+			URL.revokeObjectURL(blobUrl);
+		} catch (error) {
+			console.error("Error downloading QR code:", error);
+		}
+	}
+
 	const dataPromise = getModels();
 </script>
 
@@ -123,5 +142,39 @@
 				{/each}
 			</div>
 		{/if}
+
+		<div class="mt-12 flex flex-col items-center border-t border-slate-100 pt-8">
+			<h4 class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-6">Zdieľať poschodie</h4>
+
+			<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm mb-4">
+				<img
+					src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(page.url.href)}`}
+					alt="QR Code"
+					class="w-32 h-32"
+				/>
+			</div>
+
+			<button
+				class="flex items-center gap-2 text-xs text-slate-500 hover:text-aviation-accent transition-colors cursor-pointer"
+				onclick={downloadQr}
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="16"
+					height="16"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+					<polyline points="7 10 12 15 17 10" />
+					<line x1="12" y1="15" x2="12" y2="3" />
+				</svg>
+				Stiahnuť QR kód
+			</button>
+		</div>
 	{/await}
 </div>
