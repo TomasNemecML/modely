@@ -20,7 +20,7 @@
 	<div class="mb-10 text-center">
 		<h2 class="text-4xl font-black uppercase tracking-tighter text-aviation-blue mb-2">Moja zbierka</h2>
 		<div class="h-1 w-20 bg-aviation-accent mx-auto rounded-full"></div>
-		<p class="text-slate-500 text-sm mt-4 font-medium">Prehliadajte si modely lietadiel podľa poschodí</p>
+		<p class="text-slate-500 text-sm mt-4 font-medium">Prehliadajte si kompletnú zbierku modelov</p>
 	</div>
 
 	{#await shelvesPromise}
@@ -40,7 +40,7 @@
 
 					<div class="grow p-6">
 						<div class="text-aviation-accent text-[10px] font-bold uppercase tracking-[0.2em] mb-2">
-							Poschodie {shelf.Cislo}
+							#{shelf.Cislo}
 						</div>
 						<h3 class="text-2xl font-bold group-hover:text-aviation-accent transition-colors">
 							{shelf.Nazov || shelf.Name || ""}
