@@ -167,7 +167,9 @@
 								>
 								Aerolinka
 							</div>
-							<div class="font-bold text-aviation-blue">{model.Aerolinka || "N/A"}</div>
+							<div class={model.Aerolinka ? "font-bold text-aviation-blue" : "text-slate-400"}>
+								{model.Aerolinka || "-"}
+							</div>
 						</div>
 						<div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
 							<div
@@ -190,7 +192,9 @@
 								>
 								Značka
 							</div>
-							<div class="font-bold text-aviation-blue">{model.Znacka || "N/A"}</div>
+							<div class={model.Znacka ? "font-bold text-aviation-blue" : "text-slate-400"}>
+								{model.Znacka || "-"}
+							</div>
 						</div>
 						<div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
 							<div
@@ -213,7 +217,9 @@
 								>
 								Model
 							</div>
-							<div class="font-bold text-aviation-blue">{model.Model || "N/A"}</div>
+							<div class={model.Model ? "font-bold text-aviation-blue" : "text-slate-400"}>
+								{model.Model || "-"}
+							</div>
 						</div>
 						<div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
 							<div
@@ -239,7 +245,9 @@
 								>
 								Výrobca
 							</div>
-							<div class="font-bold text-aviation-blue">{model.Vyrobca || "N/A"}</div>
+							<div class={model.Vyrobca ? "font-bold text-aviation-blue" : "text-slate-400"}>
+								{model.Vyrobca || "-"}
+							</div>
 						</div>
 						<div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
 							<div
@@ -262,7 +270,9 @@
 								>
 								Mierka
 							</div>
-							<div class="font-bold text-aviation-blue">{model.Mierka || "N/A"}</div>
+							<div class={model.Mierka ? "font-bold text-aviation-blue" : "text-slate-400"}>
+								{model.Mierka || "-"}
+							</div>
 						</div>
 
 						<div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
@@ -284,10 +294,12 @@
 								>
 								Postavené
 							</div>
-							<div class="font-bold text-aviation-blue">{model.CasPostavania || "N/A"}</div>
+							<div class={model.CasPostavania ? "font-bold text-aviation-blue" : "text-slate-400"}>
+								{model.CasPostavania || "-"}
+							</div>
 						</div>
 
-						<div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+						<!-- <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
 							<div
 								class="text-[10px] text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-2"
 							>
@@ -314,7 +326,7 @@
 								Materiál
 							</div>
 							<div class="font-bold text-aviation-blue">{model.Material || "N/A"}</div>
-						</div>
+						</div> -->
 
 						<div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
 							<div
@@ -340,7 +352,9 @@
 								>
 								Registrácia
 							</div>
-							<div class="font-bold text-aviation-blue">{model.SPZ || "N/A"}</div>
+							<div class={model.SPZ ? "font-bold text-aviation-blue" : "text-slate-400"}>
+								{model.SPZ || "-"}
+							</div>
 						</div>
 					</div>
 
