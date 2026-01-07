@@ -186,16 +186,20 @@
 									stroke-linecap="round"
 									stroke-linejoin="round"
 									class="text-aviation-accent"
-									><path d="M12 2H2v10h10V2z" /><path d="m12 12 9 9" /><path d="m21 12-9 9" /><path
-										d="M22 22h-10V12h10v10z"
-									/></svg
+									><rect width="18" height="18" x="3" y="4" rx="2" ry="2" /><line
+										x1="16"
+										x2="16"
+										y1="2"
+										y2="6"
+									/><line x1="8" x2="8" y1="2" y2="6" /><line x1="3" x2="21" y1="10" y2="10" /></svg
 								>
-								Značka
+								Výrobca
 							</div>
-							<div class={model.Znacka ? "font-bold text-aviation-blue" : "text-slate-400"}>
-								{model.Znacka || "-"}
+							<div class={model.Vyrobca ? "font-bold text-aviation-blue" : "text-slate-400"}>
+								{model.Vyrobca || "-"}
 							</div>
 						</div>
+
 						<div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
 							<div
 								class="text-[10px] text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-2"
@@ -236,17 +240,14 @@
 									stroke-linecap="round"
 									stroke-linejoin="round"
 									class="text-aviation-accent"
-									><rect width="18" height="18" x="3" y="4" rx="2" ry="2" /><line
-										x1="16"
-										x2="16"
-										y1="2"
-										y2="6"
-									/><line x1="8" x2="8" y1="2" y2="6" /><line x1="3" x2="21" y1="10" y2="10" /></svg
+									><path d="M12 2H2v10h10V2z" /><path d="m12 12 9 9" /><path d="m21 12-9 9" /><path
+										d="M22 22h-10V12h10v10z"
+									/></svg
 								>
-								Výrobca
+								Stavebnica
 							</div>
-							<div class={model.Vyrobca ? "font-bold text-aviation-blue" : "text-slate-400"}>
-								{model.Vyrobca || "-"}
+							<div class={model.Stavebnica ? "font-bold text-aviation-blue" : "text-slate-400"}>
+								{model.Stavebnica || "-"}
 							</div>
 						</div>
 						<div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
