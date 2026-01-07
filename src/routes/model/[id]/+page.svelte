@@ -4,6 +4,15 @@
 
 	const modelId = page.params.id;
 
+	let currentImageIndex = $state(0);
+
+	function handleScroll(e) {
+		const target = e.target;
+		if (target) {
+			currentImageIndex = Math.round(target.scrollLeft / target.clientWidth);
+		}
+	}
+
 	async function getModel() {
 		try {
 			return await pb.collection("Modely").getOne(modelId, {
@@ -95,18 +104,38 @@
 
 			<div class="premium-card mb-12">
 				<div class="aspect-video bg-slate-100 relative">
-					{#if model.Obrazok}
-						<img
-							src={pb.files.getURL(model, model.Obrazok)}
-							alt={model.Nazov}
-							class="w-full h-full object-cover"
-						/>
+					{#if model.Obrazok && model.Obrazok.length > 0}
+						{@const images = Array.isArray(model.Obrazok) ? model.Obrazok : [model.Obrazok]}
+						<div class="flex overflow-x-auto snap-x snap-mandatory w-full h-full" onscroll={handleScroll}>
+							{#each images as obrazok}
+								<img
+									src={pb.files.getURL(model, obrazok)}
+									alt={model.Nazov}
+									class="w-full h-full object-cover shrink-0 snap-center"
+								/>
+							{/each}
+						</div>
+
+						{#if images.length > 1}
+							<div class="absolute bottom-4 left-0 w-full flex justify-center gap-2 z-10">
+								{#each images as _, i}
+									<div
+										class="w-2 h-2 rounded-full transition-all duration-300 shadow-sm {i ===
+										currentImageIndex
+											? 'bg-white scale-125 opacity-100'
+											: 'bg-white/50 opacity-70'}"
+									></div>
+								{/each}
+							</div>
+						{/if}
 					{:else}
 						<div class="w-full h-full flex items-center justify-center text-slate-300 italic">
 							Fotka nie je k dispozícii
 						</div>
 					{/if}
-					<div class="absolute bottom-0 left-0 w-full h-28 bg-linear-to-t from-black/10 to-transparent"></div>
+					<div
+						class="absolute bottom-0 left-0 w-full h-28 bg-linear-to-t from-black/10 to-transparent pointer-events-none"
+					></div>
 				</div>
 				<div class="p-6">
 					<div class="text-aviation-accent text-xs font-bold uppercase tracking-[0.2em] mb-3">
@@ -117,7 +146,7 @@
 					</h2>
 
 					<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-10">
-						<div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+						<div class="bg-slate-50 p-4 rounded-xl border border-slate-100 col-span-2">
 							<div
 								class="text-[10px] text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-2"
 							>
@@ -208,9 +237,9 @@
 										y2="6"
 									/><line x1="8" x2="8" y1="2" y2="6" /><line x1="3" x2="21" y1="10" y2="10" /></svg
 								>
-								Rok
+								Výrobca
 							</div>
-							<div class="font-bold text-aviation-blue">{model.Rok || "N/A"}</div>
+							<div class="font-bold text-aviation-blue">{model.Vyrobca || "N/A"}</div>
 						</div>
 						<div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
 							<div
@@ -253,7 +282,7 @@
 									class="text-aviation-accent"
 									><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg
 								>
-								Čas stavby
+								Postavené
 							</div>
 							<div class="font-bold text-aviation-blue">{model.CasPostavania || "N/A"}</div>
 						</div>

@@ -104,11 +104,12 @@
 		{:else}
 			<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
 				{#each models as model (model.id)}
+					{@const image = Array.isArray(model.Obrazok) ? model.Obrazok[0] : model.Obrazok}
 					<a href="/model/{model.id}/" class="premium-card group">
 						<div class="aspect-4/3 relative overflow-hidden bg-slate-100">
-							{#if model.Obrazok}
+							{#if image}
 								<img
-									src={pb.files.getURL(model, model.Obrazok)}
+									src={pb.files.getURL(model, image)}
 									alt={model.Nazov}
 									class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
 								/>
