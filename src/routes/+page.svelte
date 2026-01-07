@@ -3,7 +3,7 @@
 
 	async function getShelves() {
 		try {
-			const records = await pb.collection("Policky").getFullList({
+			const records = await pb.collection("Kategorie").getFullList({
 				sort: "Cislo",
 			});
 			return records;

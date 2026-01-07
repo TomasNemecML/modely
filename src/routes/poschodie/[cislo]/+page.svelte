@@ -8,7 +8,7 @@
 		// Logic: Find shelf by number, then get models for that shelf
 		// Assuming 'policky' collection has a 'cislo' field and 'modely' has a 'policka' relation
 		try {
-			const shelf = await pb.collection("Policky").getFirstListItem(`Cislo="${shelfId}"`);
+			const shelf = await pb.collection("Kategorie").getFirstListItem(`Cislo="${shelfId}"`);
 			const models = await pb.collection("Modely").getList(1, 50, {
 				filter: `Policka="${shelf.id}"`,
 			});
